@@ -40,12 +40,12 @@ namespace Prueba_de_Software
         }
 
         [Theory]
-        [InlineData(34, 87, 12)]
-        [InlineData(34, 12, 87)]
+        [InlineData(34, 17, 12)]
+        [InlineData(34, 12, 17)]
         [InlineData(87, 34, 12)]
         [InlineData(87, 12, 34)]
-        [InlineData(12, 87, 34)]
-        [InlineData(12, 34, 87)]
+        [InlineData(12, 27, 34)]
+        [InlineData(12, 34, 27)]
         [InlineData(3, 1, 2)]
         [InlineData(3, 2, 1)]
         public async void TestEscaleno(int lado1, int lado2, int lado3)
@@ -85,7 +85,7 @@ namespace Prueba_de_Software
             var response = await httpClient.GetAsync(url);
 
             // Assest
-            Assert.Equal("500", response.StatusCode.ToString());
+            Assert.Equal("InternalServerError", response.StatusCode.ToString());
         }
 
         [Theory]

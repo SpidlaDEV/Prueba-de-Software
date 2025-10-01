@@ -26,7 +26,7 @@ namespace Prueba_de_Software
 
             // Assest
             Assert.True(response.IsSuccessStatusCode);
-            Assert.Equal(true.ToString(), await response.Content.ReadAsStringAsync());
+            Assert.Equal("true", await response.Content.ReadAsStringAsync());
         }
 
         [Theory]
@@ -50,13 +50,12 @@ namespace Prueba_de_Software
 
             // Assest
             Assert.True(response.IsSuccessStatusCode);
-            Assert.Equal(false.ToString(), await response.Content.ReadAsStringAsync());
+            Assert.Equal("false", await response.Content.ReadAsStringAsync());
         }
 
         [Theory]
         [InlineData(-3)]
-        [InlineData(2147483648)]
-        public async void TestError(int anio)
+        public async void TestInternalServerError(int anio)
         {
             // Arrange
             string url = $"{base_url}/EsBisiesto?anio={anio}";
@@ -65,7 +64,7 @@ namespace Prueba_de_Software
             var response = await httpClient.GetAsync(url);
 
             // Assest
-            Assert.Equal("500", response.StatusCode.ToString());
+            Assert.Equal("InternalServerError", response.StatusCode.ToString());
         }
     }
 }
