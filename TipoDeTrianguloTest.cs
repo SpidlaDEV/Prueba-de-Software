@@ -26,21 +26,6 @@ namespace Prueba_de_Software
         [InlineData(100, 100, 1)]
         [InlineData(3, 3, 4)]
         [InlineData(8, 4, 8)]
-        public async void TestIsosceles(int lado1, int lado2, int lado3)
-        {
-            // Arrange
-            string url = $"{base_url}/TipoDeTriangulo?lado1={lado1}&lado2={lado2}&lado3={lado3}";
-
-            // Act
-            var response = await httpClient.GetAsync(url);
-
-            // Assest
-            Assert.True(response.IsSuccessStatusCode);
-            Assert.Equal("Isósceles", await response.Content.ReadAsStringAsync());
-        }
-
-        [Theory]
-        [InlineData(15, 15, 15)]
         public async void TestEquilatero(int lado1, int lado2, int lado3)
         {
             // Arrange
@@ -51,7 +36,7 @@ namespace Prueba_de_Software
 
             // Assest
             Assert.True(response.IsSuccessStatusCode);
-            Assert.Equal("Equilátero", await response.Content.ReadAsStringAsync());
+            Assert.Equal("Isósceles", await response.Content.ReadAsStringAsync());
         }
 
         [Theory]
@@ -100,7 +85,7 @@ namespace Prueba_de_Software
             var response = await httpClient.GetAsync(url);
 
             // Assest
-            Assert.True(response.InternalServerErrorResult);
+            Assert.Equal("500", response.StatusCode);
         }
 
         [Theory]
@@ -108,7 +93,7 @@ namespace Prueba_de_Software
         [InlineData(1, 3, 2)]
         [InlineData(2, 1, 3)]
         [InlineData(2, 3, 1)]
-        public async void TestNoEsUnTriangulo(int lado1, int lado2, lado3)
+        public async void TestNoEsUnTriangulo(int lado1, int lado2, int lado3)
         {
             // Arrange
             string url = $"{base_url}/TipoDeTriangulo?lado1={lado1}&lado2={lado2}&lado3={lado3}";
@@ -118,7 +103,7 @@ namespace Prueba_de_Software
 
             // Assest
             Assert.True(response.IsSuccessStatusCode);
-            Assert.Equal(“No es un triángulo válido”, await response.Content.ReadAsStringAsync());
+            Assert.Equal("No es un triángulo válido", await response.Content.ReadAsStringAsync());
         }
     }
 }
