@@ -85,7 +85,7 @@ namespace Prueba_de_Software
             var response = await httpClient.GetAsync(url);
 
             // Assest
-            Assert.Equal("500", response.StatusCode);
+            Assert.Equal("500", response.StatusCode.ToString());
         }
 
         [Theory]
