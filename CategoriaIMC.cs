@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace Prueba_de_Software
 {
     public class CategoriaIMC
